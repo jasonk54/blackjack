@@ -6,9 +6,8 @@ class window.HandView extends Backbone.View
   template: _.template '<h2><% if(isDealer){ %>Dealer<% }else{ %>You<% } %> (<span class="score"></span>)</h2>'
 
   initialize: ->
-    #TODO: why doesn't 'add' trigger 'change'?
-    @collection.on 'change', => @render
-    @collection.on 'add', => @render
+    @collection.on 'change', => @render()
+    @collection.on 'add', => @render()
     @render()
 
   render: ->
