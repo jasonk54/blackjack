@@ -17,8 +17,41 @@ window.App = (function(_super) {
     this.set('playerHand', deck.dealPlayer());
     this.set('dealerHand', deck.dealDealer());
     return this.get('playerHand').on('stand', function() {
-      return _this.get('dealerHand').playThrough();
+      _this.get('dealerHand').playThrough();
+      return _this.result();
     });
+  };
+
+  App.prototype.result = function() {
+    if (this.get('playerHand').scores() > 21 && this.get('dealerHand').scores() > 21) {
+      console.log('Both bust');
+      console.log('dealer: ', this.get('dealerHand').scores());
+      return console.log('player: ', this.get('playerHand').scores());
+    } else if (this.get('playerHand').scores() > 21 && this.get('dealerHand').scores() < 21) {
+      console.log('Player bust');
+      console.log('dealer: ', this.get('dealerHand').scores());
+      return console.log('player: ', this.get('playerHand').scores());
+    } else if (this.get('playerHand').scores() < 21 && this.get('dealerHand').scores() > 21) {
+      console.log('Dealer bust');
+      console.log('dealer: ', this.get('dealerHand').scores());
+      return console.log('player: ', this.get('playerHand').scores());
+    } else if (this.get('playerHand').scores() > this.get('dealerHand').scores()) {
+      console.log('Player wins!');
+      console.log('dealer: ', this.get('dealerHand').scores());
+      return console.log('player: ', this.get('playerHand').scores());
+    } else if (this.get('playerHand').scores() < this.get('dealerHand').scores()) {
+      console.log('Dealer wins!');
+      console.log('dealer: ', this.get('dealerHand').scores());
+      return console.log('player: ', this.get('playerHand').scores());
+    } else if (this.get('playerHand').scores() === 21 || this.get('dealerHand').scores() === 21) {
+      console.log('BlackJack');
+      console.log('dealer: ', this.get('dealerHand').scores());
+      return console.log('player: ', this.get('playerHand').scores());
+    } else {
+      console.log('Tie');
+      console.log('dealer: ', this.get('dealerHand').scores());
+      return console.log('player: ', this.get('playerHand').scores());
+    }
   };
 
   return App;
