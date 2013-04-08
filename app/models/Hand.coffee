@@ -18,14 +18,8 @@ class window.Hand extends Backbone.Collection
       score + if card.get 'revealed' then card.get 'value' else 0
     , 0
 
-    temp = score + 10
-    if hasAce
-      if temp > 21
-        [score]
-      else
-        [score + 10]
-    else
-      [score]
+    aceValue = score + 10
+    if hasAce && aceValue <= 21 then [aceValue] else [score]
 
   playThrough: ->
     @at(0).flip()

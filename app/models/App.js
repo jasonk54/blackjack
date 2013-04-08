@@ -24,26 +24,37 @@ window.App = (function(_super) {
 
   App.prototype.result = function() {
     if (this.get('playerHand').scores() > 21 && this.get('dealerHand').scores() > 21) {
+      $('body').css('background-color', 'red');
       console.log('Both bust');
       console.log('dealer: ', this.get('dealerHand').scores());
-      return console.log('player: ', this.get('playerHand').scores());
-    } else if (this.get('playerHand').scores() > 21 && this.get('dealerHand').scores() < 21) {
+      console.log('player: ', this.get('playerHand').scores());
+    }
+    if (this.get('playerHand').scores() > 21 && this.get('dealerHand').scores() < 21) {
+      $('body').css('background-color', 'red');
       console.log('Player bust');
       console.log('dealer: ', this.get('dealerHand').scores());
-      return console.log('player: ', this.get('playerHand').scores());
-    } else if (this.get('playerHand').scores() < 21 && this.get('dealerHand').scores() > 21) {
+      console.log('player: ', this.get('playerHand').scores());
+    }
+    if (this.get('playerHand').scores() < 21 && this.get('dealerHand').scores() > 21) {
+      $('body').css('background-color', 'green');
       console.log('Dealer bust');
       console.log('dealer: ', this.get('dealerHand').scores());
-      return console.log('player: ', this.get('playerHand').scores());
-    } else if (this.get('playerHand').scores() > this.get('dealerHand').scores()) {
+      console.log('player: ', this.get('playerHand').scores());
+    }
+    if (this.get('playerHand').scores() > this.get('dealerHand').scores() && this.get('playerHand').scores() <= 21) {
+      $('body').css('background-color', 'green');
       console.log('Player wins!');
       console.log('dealer: ', this.get('dealerHand').scores());
-      return console.log('player: ', this.get('playerHand').scores());
-    } else if (this.get('playerHand').scores() < this.get('dealerHand').scores()) {
+      console.log('player: ', this.get('playerHand').scores());
+    }
+    if (this.get('playerHand').scores() < this.get('dealerHand').scores() && this.get('dealerHand').scores() <= 21) {
+      $('body').css('background-color', 'red');
       console.log('Dealer wins!');
       console.log('dealer: ', this.get('dealerHand').scores());
-      return console.log('player: ', this.get('playerHand').scores());
-    } else if (this.get('playerHand').scores() === 21 || this.get('dealerHand').scores() === 21) {
+      console.log('player: ', this.get('playerHand').scores());
+    }
+    if (this.get('playerHand').scores() === 21 || this.get('dealerHand').scores() === 21) {
+      $('body').css('background-color', 'green');
       console.log('BlackJack');
       console.log('dealer: ', this.get('dealerHand').scores());
       return console.log('player: ', this.get('playerHand').scores());

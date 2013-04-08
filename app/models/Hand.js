@@ -26,20 +26,16 @@ window.Hand = (function(_super) {
   };
 
   Hand.prototype.scores = function() {
-    var hasAce, score, temp;
+    var aceValue, hasAce, score;
     hasAce = this.reduce(function(memo, card) {
       return memo || card.get('value') === 1;
     }, false);
     score = this.reduce(function(score, card) {
       return score + (card.get('revealed') ? card.get('value') : 0);
     }, 0);
-    temp = score + 10;
-    if (hasAce) {
-      if (temp > 21) {
-        return [score];
-      } else {
-        return [score + 10];
-      }
+    aceValue = score + 10;
+    if (hasAce && aceValue <= 21) {
+      return [aceValue];
     } else {
       return [score];
     }
